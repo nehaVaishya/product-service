@@ -82,4 +82,26 @@ public class ProductControllerTest {
         assertEquals(expectedJson, response.getContentAsString());
 	}
 	
+	@Test
+	public void createProductWithID_Success() throws Exception {
+		
+		String expectedJson = "{\"id\":12954218,\"name\":null,\"current_price\":{\"value\":18.0,\"currency_code\":\"EURO\"}}";
+		
+		Product product = Product.builder()
+				.id(12954218l)
+				.currentPrice(new Price(18,"EURO")).build();
+		Mockito.when(productService.saveProduct(Mockito.any())).thenReturn(product);
+		
+	    
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.post("/products")
+	            .contentType(MediaType.APPLICATION_JSON)
+	            .accept(MediaType.APPLICATION_JSON)
+	            .content(this.mapper.toJson(product));
+		
+		MockHttpServletResponse response = mockMvc.perform(mockRequest)
+        .andExpect(MockMvcResultMatchers.status().is2xxSuccessful()).andReturn().getResponse();
+	    
+        assertEquals(expectedJson, response.getContentAsString());
+	}
+	
 }
