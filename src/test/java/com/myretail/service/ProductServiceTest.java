@@ -32,7 +32,7 @@ public class ProductServiceTest {
 		Product product = new Product();
 		product.setId(13860428l);
 		product.setName(null);
-		product.setCurrentPrice(new Price(13.49,"USD"));
+		product.setCurrentPrice(new Price(18,"EURO"));
 		Optional<Product> op = Optional.of(product);
 		Mockito.when(productRepository.findById(13860428l)).thenReturn(op);
 		
