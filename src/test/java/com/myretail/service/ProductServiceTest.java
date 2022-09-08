@@ -34,8 +34,7 @@ public class ProductServiceTest {
 		product.setName(null);
 		product.setCurrentPrice(new Price(18,"EURO"));
 		Optional<Product> op = Optional.of(product);
-		Mockito.when(productRepository.findById(13860428l)).thenReturn(op);
-		
+		Mockito.when(productRepository.findById(13860428l)).thenReturn(op);	
 		Product currentProduct = productService.findProductById(13860428l);
 		assertEquals(op.get(), currentProduct);
 		
