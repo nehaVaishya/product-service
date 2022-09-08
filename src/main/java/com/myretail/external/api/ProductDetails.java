@@ -32,6 +32,7 @@ public class ProductDetails {
 	@Retry(name="default",fallbackMethod="handleRemoteCallServiceDown")
 	public String getProductDetail(Long id) throws ProductNotFoundException,ServiceUnavailableException {
 	    try {
+	    	//TODO Read details from cache
 			String result = restTemplate.exchange(Constants.PRODUCT_NAME_END_POINT + id, HttpMethod.GET,setHeader(),String.class).getBody();
 			return result;	    	
 	    }
